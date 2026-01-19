@@ -1047,3 +1047,33 @@ button:hover {
     background: var(--danger);
     color: white;
 }
+
+/* --- CORREÇÃO MOBILE: MENU TOTALMENTE VISÍVEL --- */
+@media (max-width: 768px) {
+    /* 1. Faz o cabeçalho ocupar menos espaço */
+    .main-header {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 1.5rem; /* Diminui a logo gigante */
+        margin-bottom: 5px;
+    }
+
+    /* 2. Força os botões a caberem na tela (sem rolagem escondida) */
+    .main-nav {
+        flex-wrap: wrap;       /* Se não couber, quebra para a linha de baixo */
+        overflow-x: visible;   /* Desativa a rolagem lateral */
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .main-nav button {
+        flex: 1;               /* Botões dividem o espaço igualmente */
+        padding: 10px 5px;     /* Botões mais compactos */
+        font-size: 0.8rem;     /* Letra ajustada para celular */
+        min-width: auto;       /* Remove largura mínima */
+        white-space: normal;   /* Permite que o texto quebre se for longo */
+    }
+}
