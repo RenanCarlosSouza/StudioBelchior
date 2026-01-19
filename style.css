@@ -1,39 +1,52 @@
 /* ============================================================
-   SISTEMA CARLINHOS 2.0 - TEMA MIDNIGHT DARK
+   SISTEMA CARLINHOS 2.0 - TEMA REPUTATION (VERSÃO FINAL)
    ============================================================ */
 
+/* Importando fontes: 'Oswald' (Manchetes/Industrial) e 'Montserrat' (Corpo Moderno) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Oswald:wght@400;500;700&display=swap');
+
 :root {
-    /* Paleta Escura Sofisticada (Slate Blue) */
-    --bg-body: #0f172a;
-    /* Fundo Azul Noturno Profundo */
-    --bg-card: #1e293b;
-    /* Fundo dos Cards (Cinza Azulado) */
-    --bg-input: #334155;
-    /* Inputs mais claros para destaque */
-    --border: #475569;
-    /* Bordas sutis */
+    /* PALETA REPUTATION (PRETO, METÁLICO, SANGUE E COBRA) */
 
-    --text-primary: #f8fafc;
-    /* Branco Gelo (Leitura perfeita) */
-    --text-secondary: #94a3b8;
-    /* Cinza Metálico */
+    --bg-body: #0D0D0D;
+    /* Preto Quase Total (Noite) */
+    --bg-card: #1A1A1A;
+    /* Cinza Chumbo (Concreto) */
+    --bg-input: #262626;
+    /* Cinza Escuro Industrial */
+    --border: #404040;
+    /* Borda Metálica Escura */
 
-    --primary: #6366f1;
-    /* Indigo Neon (Botão Principal) */
-    --primary-hover: #818cf8;
+    --text-primary: #E5E7EB;
+    /* Prata Claro (Texto Principal) */
+    --text-secondary: #9CA3AF;
+    /* Cinza Médio (Texto Secundário) */
 
-    --danger: #ef4444;
-    /* Vermelho */
-    --success: #10b981;
-    /* Verde Esmeralda */
-    --warning: #f59e0b;
-    /* Âmbar */
+    /* DESTAQUES METÁLICOS */
+    --primary: #D4D4D8;
+    /* Prata/Platina (Botões Ação) */
+    --primary-hover: #FFFFFF;
+    /* Branco Puro (Flash) */
 
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-    --radius: 12px;
+    /* CORES DE "VINGANÇA" */
+    --danger: #DC2626;
+    /* Vermelho Sangue (Bad Blood/Erro) */
+    --success: #10B981;
+    /* Verde Esmeralda (Snake/Sucesso) */
+
+    /* Estética Industrial/Pesada */
+    --shadow: 4px 4px 0px #000000;
+    /* Sombra DURA preta (sem blur) */
+    --radius: 0px;
+    /* Bordas afiadas/cortantes */
+
+    /* Fontes */
+    --font-headline: 'Oswald', sans-serif;
+    /* Fonte Alta e Forte (Manchete) */
+    --font-body: 'Montserrat', sans-serif;
+    /* Fonte Padrão */
 }
 
-/* RESET */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -41,35 +54,38 @@
 }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--font-body);
     background-color: var(--bg-body);
     color: var(--text-primary);
-    padding-bottom: 60px;
-    line-height: 1.5;
+    padding-bottom: 80px;
+    line-height: 1.6;
+    /* Textura sutil de ruído/grunge no fundo */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
 /* --- CABEÇALHO --- */
 .main-header {
     background: var(--bg-card);
-    padding: 15px 30px;
+    padding: 20px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 20px;
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border-bottom: 2px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 .logo {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--primary);
-    letter-spacing: 0.5px;
-    text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
-    /* Brilho neon suave */
+    font-family: var(--font-headline);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    width: 100%;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .main-nav {
@@ -77,37 +93,44 @@ body {
     gap: 10px;
     overflow-x: auto;
     padding-bottom: 5px;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.main-nav::-webkit-scrollbar {
+    height: 0px;
+    background: transparent;
 }
 
 .main-nav button {
-    background: transparent;
+    background: black;
     border: 1px solid var(--border);
     color: var(--text-secondary);
-    padding: 8px 18px;
-    border-radius: 50px;
+    padding: 12px 24px;
+    border-radius: var(--radius);
     cursor: pointer;
-    font-weight: 600;
+    font-family: var(--font-headline);
+    font-weight: 500;
     white-space: nowrap;
-    transition: 0.2s;
-}
-
-.main-nav button:hover {
-    background: rgba(99, 102, 241, 0.1);
-    color: white;
-    border-color: var(--primary);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+    transition: all 0.2s;
 }
 
 .main-nav button.active {
     background: var(--primary);
-    color: white;
+    color: black;
     border-color: var(--primary);
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+    box-shadow: 2px 2px 0 black;
+    font-weight: 700;
 }
 
-/* --- LAYOUT --- */
+/* --- LAYOUT GERAL --- */
 .content {
-    padding: 30px 20px;
-    max-width: 1100px;
+    padding: 30px 15px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -117,7 +140,7 @@ body {
 
 .tela.ativa {
     display: block;
-    animation: fadeUp 0.4s ease;
+    animation: fadeUp 0.3s ease-out;
 }
 
 @keyframes fadeUp {
@@ -132,57 +155,42 @@ body {
     }
 }
 
-/* --- CARDS E INPUTS --- */
+/* --- CARDS & FORMULÁRIOS --- */
 .form-card {
     background: var(--bg-card);
-    padding: 30px;
+    padding: 25px;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     margin-bottom: 30px;
     border: 1px solid var(--border);
 }
 
-.header-section {
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .header-section h2 {
+    font-family: var(--font-headline);
+    font-size: 2.2rem;
+    text-align: center;
     color: var(--text-primary);
-    font-size: 1.8rem;
-    font-weight: 700;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
 }
 
 h4 {
     color: var(--text-primary);
-    margin-bottom: 10px;
-    font-weight: 600;
+    margin-bottom: 15px;
+    font-family: var(--font-headline);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
 }
 
-hr {
-    border: 0;
-    border-top: 1px solid var(--border);
-    margin: 25px 0;
-}
-
+/* --- INPUTS --- */
 .input-group {
     display: flex;
     flex-direction: column;
     gap: 15px;
-}
-
-@media (min-width: 768px) {
-    .input-group {
-        flex-direction: row;
-    }
-
-    .filtro-mes-area {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
 }
 
 input,
@@ -190,178 +198,401 @@ select,
 textarea {
     background-color: var(--bg-input);
     color: var(--text-primary);
-    border: 1px solid transparent;
-    padding: 12px 16px;
-    border-radius: 8px;
+    border: 1px solid var(--border);
+    padding: 15px;
+    border-radius: var(--radius);
     width: 100%;
     outline: none;
-    font-size: 0.95rem;
-    transition: 0.2s;
+    font-family: var(--font-body);
+    font-size: 16px;
+    /* Evita zoom no iPhone */
+    font-weight: 600;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
     border-color: var(--primary);
-    background-color: #0f172a;
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    background-color: black;
+    box-shadow: 2px 2px 0 var(--primary);
 }
 
 ::placeholder {
-    color: #64748b;
+    color: #666;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
 button {
     background-color: var(--primary);
-    color: white;
+    color: black;
     border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
+    padding: 15px 20px;
+    border-radius: var(--radius);
     cursor: pointer;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: 0.2s;
+    font-family: var(--font-headline);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    width: 100%;
+    transition: 0.1s;
+    box-shadow: var(--shadow);
 }
 
 button:hover {
     background-color: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 black;
 }
 
-/* --- TABELAS --- */
-.lista-container {
-    background: var(--bg-card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    margin-top: 20px;
+/* --- MINI DASHBOARD ALUNOS (STATS) --- */
+.stats-alunos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: black;
     border: 1px solid var(--border);
+    padding: 15px;
+    text-align: center;
+    box-shadow: var(--shadow);
 }
 
-.lista-container h3 {
-    padding: 20px;
-    margin: 0;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-primary);
+.stat-card.pendente {
+    border-bottom: 4px solid var(--danger);
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 700px;
+.stat-card.recebido {
+    border-bottom: 4px solid var(--success);
 }
 
-th {
-    background: #0f172a;
-    color: var(--text-secondary);
+.stat-card .label {
+    display: block;
     font-size: 0.75rem;
-    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 800;
     letter-spacing: 1px;
-    font-weight: 700;
-    padding: 16px 20px;
-    text-align: left;
-    border-bottom: 1px solid var(--border);
 }
 
-td {
-    padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
+.stat-card .value {
+    display: block;
+    font-family: var(--font-headline);
+    font-size: 1.5rem;
     color: var(--text-primary);
-    vertical-align: middle;
+    margin-top: 5px;
 }
 
-tr:last-child td {
-    border-bottom: none;
+/* --- BARRA FILTROS ALUNOS --- */
+.barra-filtros-alunos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-tr:hover {
-    background-color: #334155;
+@media (min-width: 600px) {
+    .barra-filtros-alunos {
+        flex-direction: row;
+    }
 }
 
-/* Highlight ao passar o mouse */
+.botoes-filtro {
+    display: flex;
+    gap: 5px;
+}
+
+.botoes-filtro button {
+    padding: 12px;
+    font-size: 0.8rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    box-shadow: none;
+}
+
+.botoes-filtro button.active {
+    background: var(--primary);
+    color: black;
+    font-weight: 800;
+    border-color: var(--primary);
+}
+
+/* --- TABELAS MOBILE (Estilo Industrial) --- */
+.lista-container {
+    margin-top: 25px;
+}
+
+@media (max-width: 768px) {
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        background: var(--bg-card);
+        margin-bottom: 25px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        border-left: 4px solid var(--primary);
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        padding: 12px 0 12px 45%;
+        text-align: right;
+        min-height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+
+    td:last-child {
+        border-bottom: none;
+        gap: 10px;
+        padding-top: 20px;
+        justify-content: flex-end;
+    }
+
+    td:before {
+        position: absolute;
+        left: 0;
+        top: 14px;
+        width: 40%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-family: var(--font-headline);
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+
+    td:nth-of-type(1):before {
+        content: "ALUNO";
+    }
+
+    td:nth-of-type(2):before {
+        content: "STATUS";
+    }
+
+    td:nth-of-type(3):before {
+        content: "FORMA";
+    }
+
+    td:nth-of-type(4):before {
+        content: "VALOR";
+    }
+
+    td:nth-of-type(5):before {
+        content: "AÇÕES";
+    }
+
+    /* CORREÇÃO DO CAMPO VALOR (Full Width no Mobile) */
+    td:nth-of-type(4) {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 0;
+        height: auto;
+    }
+
+    td:nth-of-type(4):before {
+        position: static;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    td:nth-of-type(4) input {
+        width: 100%;
+        text-align: left;
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+}
+
+/* --- DESKTOP TABLE --- */
+@media (min-width: 769px) {
+    .main-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        text-align: left;
+        width: auto;
+    }
+
+    .main-nav {
+        width: auto;
+    }
+
+    .input-group {
+        flex-direction: row;
+    }
+
+    button {
+        width: auto;
+    }
+
+    .lista-container {
+        background: var(--bg-card);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        padding: 0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        background: black;
+        padding: 20px;
+        text-align: left;
+        color: var(--text-primary);
+        font-family: var(--font-headline);
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        border-bottom: 2px solid var(--border);
+    }
+
+    td {
+        padding: 20px;
+        border-bottom: 1px solid var(--border);
+        font-weight: 600;
+    }
+
+    tr:hover {
+        background-color: #222;
+    }
+}
 
 /* --- BOTÕES DE AÇÃO --- */
 .btn-acao {
-    padding: 8px 10px;
-    border-radius: 6px;
-    margin-right: 5px;
-    line-height: 1;
-    box-shadow: none;
-}
-
-.btn-acao:hover {
-    transform: none;
-    filter: brightness(1.1);
+    padding: 10px 15px !important;
+    width: auto !important;
+    display: inline-block;
+    margin-left: 5px;
+    border-radius: 0px !important;
+    box-shadow: 2px 2px 0 black !important;
 }
 
 .btn-editar {
-    background-color: #b45309;
+    background-color: #D97706;
+    color: black;
+}
+
+.btn-excluir {
+    background-color: var(--danger);
     color: white;
 }
 
-/* Laranja escuro */
-.btn-excluir {
-    background-color: #7f1d1d;
-    color: #fecaca;
-    border: 1px solid #991b1b;
-}
-
-/* Vermelho escuro */
 .btn-prontuario {
-    background-color: #0369a1;
-    color: #bae6fd;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 1rem;
-    margin-right: 5px;
-    box-shadow: none;
+    background-color: var(--primary);
+    color: black;
 }
 
-/* Botão Wpp */
 .btn-zap {
-    background-color: #14532d;
-    /* Verde escuro fundo */
-    color: #4ade80;
-    /* Verde neon texto */
-    border: 1px solid #166534;
-    text-decoration: none;
-    padding: 4px 10px;
-    border-radius: 50px;
+    background-color: var(--success);
+    color: black;
+    padding: 6px 15px;
+    border-radius: 0px;
     font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 800;
     display: inline-flex;
     align-items: center;
-    margin-left: 8px;
-    transition: 0.2s;
+    justify-content: center;
+    text-decoration: none;
+    width: auto !important;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 0 black;
+    font-family: var(--font-headline);
 }
 
 .btn-zap:hover {
-    background-color: #16a34a;
+    background-color: #065F46;
     color: white;
 }
 
-/* Botão Recibo */
 .btn-recibo {
-    background-color: transparent;
-    border: 1px solid #10b981;
-    color: #10b981;
-    padding: 4px 8px;
-    border-radius: 4px;
+    background-color: black;
+    border: 1px solid var(--success);
+    color: var(--success);
+    padding: 5px 10px;
+    border-radius: 0px;
     font-size: 0.75rem;
-    margin-top: 5px;
-    cursor: pointer;
-    display: inline-block;
+    text-transform: uppercase;
     text-decoration: none;
-    font-weight: 600;
+    display: inline-block;
+    margin-top: 8px;
+    font-weight: 800;
+    font-family: var(--font-headline);
 }
 
 .btn-recibo:hover {
-    background-color: #10b981;
-    color: white;
+    background-color: var(--success);
+    color: black;
 }
 
-/* --- AGENDA E PRESENÇA --- */
+/* --- AGENDA (COM FILTROS E INDICADORES) --- */
+.agenda-filtros {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    background: black;
+    padding: 15px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+@media (max-width: 600px) {
+    .agenda-filtros {
+        flex-direction: column;
+    }
+}
+
+.agenda-filtros input,
+.agenda-filtros select {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 0px;
+    padding: 12px;
+    font-family: var(--font-headline);
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.agenda-filtros input:focus,
+.agenda-filtros select:focus {
+    border-color: var(--primary);
+    background: #000;
+}
+
 .dias-semana {
     display: flex;
     gap: 10px;
@@ -372,266 +603,447 @@ tr:hover {
 
 .btn-dia {
     flex: 1;
-    background: var(--bg-input);
+    background: black;
     border: 1px solid var(--border);
     color: var(--text-secondary);
     padding: 15px;
-    min-width: 80px;
-    border-radius: 12px;
-    transition: 0.2s;
+    min-width: 70px;
+    border-radius: 0px;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: var(--font-headline);
+    font-size: 1.1rem;
 }
 
 .btn-dia.active {
     background: var(--primary);
-    color: white;
+    color: black;
     border-color: var(--primary);
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+    box-shadow: var(--shadow);
 }
 
 .horario-card {
     background: var(--bg-card);
-    border-radius: var(--radius);
-    padding: 20px;
+    padding: 0;
     margin-bottom: 20px;
-    border-left: 5px solid var(--primary);
+    border-radius: 0px;
     box-shadow: var(--shadow);
     border: 1px solid var(--border);
-    border-left-width: 5px;
+    overflow: hidden;
+}
+
+/* Destaque para o Horário Atual */
+.horario-card.agora {
+    border: 2px solid var(--success);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+    position: relative;
+}
+
+.horario-card.agora::after {
+    content: 'AGORA';
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: var(--success);
+    color: black;
+    font-weight: 800;
+    padding: 2px 10px;
+    font-size: 0.7rem;
+    font-family: var(--font-headline);
+    letter-spacing: 1px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .horario-titulo {
+    background: black;
+    padding: 15px 20px;
+    font-family: var(--font-headline);
     color: var(--primary);
-    font-weight: 800;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.horario-titulo small {
-    background: var(--bg-input);
-    padding: 4px 10px;
-    border-radius: 20px;
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.aluno-item {
-    background: #0f172a;
-    padding: 12px 15px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    font-size: 1.4rem;
+    margin: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Indicadores de Vaga (Bolinhas para 8 alunos) */
+.indicadores-vaga {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 150px;
+}
+
+.bolinha {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #444;
+    background: #1a1a1a;
+    transition: all 0.3s;
+}
+
+.bolinha.cheia {
+    background: var(--primary);
+    box-shadow: 0 0 5px var(--primary);
+    border-color: white;
+}
+
+.indicadores-vaga.lotado .bolinha.cheia {
+    background: var(--danger);
+    box-shadow: 0 0 5px var(--danger);
+    border-color: #ff0000;
+}
+
+.horario-card>div:not(.horario-titulo) {
+    padding: 20px;
+}
+
+.aluno-item {
+    background: var(--bg-input);
+    padding: 15px;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     border: 1px solid var(--border);
+    position: relative;
+    padding-left: 20px;
 }
 
-/* PRESENÇA - VERDE NEON ESCURO */
-.aluno-item.presente {
-    border-left: 5px solid #10b981;
-    background: #064e3b;
+@media (min-width: 600px) {
+    .aluno-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
 
-/* FALTA - VERMELHO NEON ESCURO */
-.aluno-item.falta {
-    border-left: 5px solid #ef4444;
-    background: #450a0a;
-    opacity: 0.8;
+.aluno-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: var(--border);
 }
 
-.aluno-item.falta strong {
-    text-decoration: line-through;
-    color: #94a3b8;
+.aluno-item.presente::before {
+    background-color: var(--success);
 }
 
-.aluno-obs {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    display: block;
-    margin-top: 2px;
+.aluno-item.falta::before {
+    background-color: var(--danger);
 }
 
 .agenda-acoes {
     display: flex;
-    gap: 8px;
+    gap: 10px;
+    justify-content: flex-end;
+    width: 100%;
 }
 
 .btn-check {
-    background: var(--bg-input);
+    background: black;
     border: 1px solid var(--border);
     color: var(--text-secondary);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    border-radius: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 0.2s;
+    font-size: 1.3rem;
+    padding: 0 !important;
+    width: 45px !important;
+    box-shadow: 2px 2px 0 black;
 }
 
 .btn-check:hover {
-    background: #475569;
-    color: white;
-    transform: scale(1.1);
+    transform: translate(2px, 2px);
+    box-shadow: none;
 }
 
 .btn-check[title="Veio"]:hover {
-    border-color: #10b981;
-    color: #10b981;
-    background: #064e3b;
+    background: var(--success);
+    color: black;
 }
 
 .btn-check[title="Faltou"]:hover {
-    border-color: #ef4444;
-    color: #ef4444;
-    background: #450a0a;
+    background: var(--danger);
+    color: white;
 }
 
-/* --- FINANCEIRO DASHBOARD --- */
+.controles-agenda {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+}
+
+@media (min-width: 600px) {
+    .controles-agenda {
+        flex-direction: row;
+    }
+}
+
+/* --- FINANCEIRO (RELATÓRIOS E PRINT) --- */
+.painel-controle-fin {
+    background: black;
+    border: 1px solid var(--border);
+    padding: 20px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 15px;
+    box-shadow: var(--shadow);
+}
+
+.input-mes-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.input-mes-wrapper label {
+    color: var(--text-secondary);
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.btn-print {
+    background: var(--bg-card);
+    border: 1px solid var(--text-secondary);
+    color: var(--text-primary);
+    width: auto;
+    white-space: nowrap;
+}
+
+.btn-print:hover {
+    background: white;
+    color: black;
+}
+
 .dashboard-financeiro {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 25px;
     margin-bottom: 30px;
 }
 
+@media (min-width: 768px) {
+    .dashboard-financeiro {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 .card-dash {
-    padding: 25px;
-    border-radius: 16px;
-    color: white;
+    padding: 30px;
+    border-radius: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
 }
 
 .card-dash span {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
     font-size: 0.9rem;
-    font-weight: 500;
-    opacity: 0.9;
 }
 
 .card-dash strong {
-    font-size: 2rem;
-    margin-top: 5px;
-    font-weight: 800;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: 2.2rem;
+    margin-top: 10px;
+    font-family: var(--font-headline);
 }
 
-/* Gradientes Escuros e Elegantes */
 .card-dash.entrada {
-    background: linear-gradient(135deg, #065f46 0%, #047857 100%);
-    border: 1px solid #10b981;
+    border-bottom: 6px solid var(--success);
 }
 
 .card-dash.saida {
-    background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
-    border: 1px solid #ef4444;
+    border-bottom: 6px solid var(--danger);
 }
 
 .card-dash.lucro {
-    background: linear-gradient(135deg, #312e81 0%, #4338ca 100%);
-    border: 1px solid #6366f1;
+    border-bottom: 6px solid var(--primary);
 }
 
-/* --- MODAL --- */
+.detalhamento-caixa {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.grid-metodos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+@media (max-width: 600px) {
+    .grid-metodos {
+        grid-template-columns: 1fr;
+    }
+}
+
+.metodo-item {
+    background: var(--bg-input);
+    padding: 15px;
+    border-left: 4px solid var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.metodo-nome {
+    font-weight: 800;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.metodo-valor {
+    font-family: var(--font-headline);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+.metodo-item:nth-child(1) {
+    border-color: #00BFA5;
+}
+
+/* Pix */
+.metodo-item:nth-child(2) {
+    border-color: #10B981;
+}
+
+/* Dinheiro */
+.metodo-item:nth-child(3) {
+    border-color: #F59E0B;
+}
+
+/* Cartão */
+
+/* --- IMPRESSÃO (ECONOMIA DE TINTA) --- */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .main-header,
+    .no-print,
+    .btn-print,
+    .tela {
+        display: none !important;
+    }
+
+    .tela.ativa {
+        display: block !important;
+    }
+
+    .painel-controle-fin,
+    .dashboard-financeiro,
+    .detalhamento-caixa,
+    .lista-container,
+    .form-card,
+    table,
+    th,
+    td {
+        background: white !important;
+        color: black !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+    }
+
+    .card-dash {
+        color: black !important;
+        border-bottom: 2px solid black !important;
+    }
+
+    button {
+        display: none !important;
+    }
+}
+
+/* --- LOGIN & MODAL --- */
+.login-overlay,
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.9);
     z-index: 2000;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+}
+
+.modal-overlay {
+    display: none;
 }
 
 .modal-overlay.open {
     display: flex;
 }
 
+.login-box,
 .modal-box {
     background: var(--bg-card);
-    width: 90%;
-    max-width: 600px;
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+    padding: 50px 30px;
+    border-radius: 0px;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--border);
+    text-align: center;
 }
 
-.modal-header {
-    padding: 20px 25px;
-    border-bottom: 1px solid var(--border);
-}
-
-.modal-header h3 {
-    font-size: 1.25rem;
+.login-box h2 {
+    font-family: var(--font-headline);
     color: var(--text-primary);
-}
-
-.modal-body {
-    padding: 25px;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
 }
 
 .modal-footer {
-    padding: 20px 25px;
-    border-top: 1px solid var(--border);
-    background: #0f172a;
-    border-radius: 0 0 16px 16px;
+    margin-top: 30px;
     text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
 }
 
 .btn-fechar {
-    background: var(--bg-input);
+    width: auto !important;
+    background: black;
+    border: 1px solid var(--border);
     color: var(--text-secondary);
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    padding: 0;
+    box-shadow: none;
 }
 
 .btn-fechar:hover {
-    background: #ef4444;
+    background: var(--danger);
     color: white;
-}
-
-/* --- TELA DE LOGIN --- */
-.login-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--bg-body);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.login-box {
-    background: var(--bg-card);
-    padding: 40px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    border: 1px solid var(--border);
-}
-
-.login-box input {
-    margin-bottom: 15px;
 }
