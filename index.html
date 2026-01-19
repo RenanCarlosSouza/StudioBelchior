@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Carlinhos 2.0 - Cloud</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="telaLogin" class="login-overlay">
+        <div class="login-box">
+            <h2 style="color: var(--primary); margin-bottom: 20px;">Sistema Carlinhos</h2>
+            <input type="email" id="emailLogin" placeholder="E-mail (ex: admin@carlinhos.com)">
+            <input type="password" id="senhaLogin" placeholder="Senha">
+            <button onclick="fazerLogin()" style="width: 100%; margin-top: 10px;">Entrar no Sistema</button>
+            <p id="msgErroLogin" style="color: var(--danger); margin-top: 10px; font-size: 0.9rem;"></p>
+        </div>
+    </div>
+
+    <div id="appConteudo" style="display: none;">
+
+        <header class="main-header">
+            <div class="logo">Sistema Carlinhos <span style="font-size:0.8rem; color:var(--success);">● Online</span>
+            </div>
+            <nav class="main-nav">
+                <button onclick="mostrarTela('clientes')" class="active">👥 Alunos</button>
+                <button onclick="mostrarTela('agenda')">📅 Agenda</button>
+                <button onclick="mostrarTela('financeiro')">💰 Financeiro</button>
+                <button onclick="fazerLogout()" style="border: 1px solid var(--danger); color: var(--danger);">Sair
+                    🚪</button>
+            </nav>
+        </header>
+
+        <main class="content">
+
+            <section id="clientes" class="tela ativa">
+                <div class="header-section">
+                    <h2>Gestão de Alunos</h2>
+                </div>
+
+                <div class="form-card">
+                    <div class="novo-cliente-area">
+                        <h4 id="tituloFormCliente">Cadastrar Novo Aluno:</h4>
+                        <div class="input-group">
+                            <input type="hidden" id="idClienteEditando">
+                            <input type="text" id="nomeCliente" placeholder="Nome completo">
+                            <input type="text" id="telefoneCliente" placeholder="Telefone">
+                            <button id="btnSalvarCliente" onclick="salvarOuAtualizarCliente()">+ Salvar Aluno</button>
+                            <button id="btnCancelarEdicao" onclick="cancelarEdicao()"
+                                style="display:none; background:#b45309;">Cancelar</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="filtro-mes-area">
+                        <div class="filtro-box">
+                            <label>📅 Mês de Referência:</label>
+                            <input type="month" id="mesReferencia">
+                        </div>
+                        <div class="resumo-box" id="resumoMesClientes"></div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 10px;">
+                    <input type="text" id="inputBusca" placeholder="🔍 Pesquisar aluno..."
+                        oninput="renderizarClientes()">
+                </div>
+
+                <div class="lista-container">
+                    <table id="tabelaClientes">
+                        <thead>
+                            <tr>
+                                <th>Aluno</th>
+                                <th style="width: 140px;">Status</th>
+                                <th style="width: 130px;">Pagamento</th>
+                                <th style="width: 100px;">Valor</th>
+                                <th style="width: 130px;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="agenda" class="tela">
+                <div class="header-section">
+                    <h2>Agenda Semanal</h2>
+                </div>
+                <div class="dias-semana">
+                    <button onclick="mudarDia('segunda')" class="btn-dia active" id="btn-segunda">Seg</button>
+                    <button onclick="mudarDia('terca')" class="btn-dia" id="btn-terca">Ter</button>
+                    <button onclick="mudarDia('quarta')" class="btn-dia" id="btn-quarta">Qua</button>
+                    <button onclick="mudarDia('quinta')" class="btn-dia" id="btn-quinta">Qui</button>
+                    <button onclick="mudarDia('sexta')" class="btn-dia" id="btn-sexta">Sex</button>
+                </div>
+                <div class="agenda-container" id="containerAgenda"></div>
+            </section>
+
+            <section id="financeiro" class="tela">
+                <div class="header-section">
+                    <h2>Controle Financeiro</h2>
+                </div>
+                <div class="dashboard-financeiro">
+                    <div class="card-dash entrada">
+                        <span>Receita</span>
+                        <strong id="dashReceita">R$ 0,00</strong>
+                    </div>
+                    <div class="card-dash saida">
+                        <span>Despesas</span>
+                        <strong id="dashDespesas">R$ 0,00</strong>
+                    </div>
+                    <div class="card-dash lucro">
+                        <span>Lucro</span>
+                        <strong id="dashLucro">R$ 0,00</strong>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <h4>Lançar Nova Despesa:</h4>
+                    <div class="input-group">
+                        <input type="text" id="descGasto" placeholder="Ex: Conta de Luz...">
+                        <input type="number" id="valorGasto" placeholder="Valor (R$)">
+                        <button onclick="adicionarGasto()" style="background-color: var(--danger);">Lançar</button>
+                    </div>
+                </div>
+                <div class="lista-container">
+                    <h3>Histórico de Despesas</h3>
+                    <table id="tabelaGastos">
+                        <thead>
+                            <tr>
+                                <th>Descrição</th>
+                                <th>Valor</th>
+                                <th>Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="modalProntuario" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="tituloProntuario">Ficha de Evolução</h3>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="idAlunoProntuario">
+                <textarea id="textoProntuario" placeholder="Histórico..." rows="10"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button onclick="salvarProntuario()">💾 Salvar</button>
+                <button onclick="fecharProntuario()" class="btn-fechar" style="margin-left:10px;">X</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
