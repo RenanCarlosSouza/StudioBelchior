@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Carlinhos 2.0 - Cloud</title>
+    <title>Sistema Carlinhos </title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,25 +12,25 @@
 
     <div id="telaLogin" class="login-overlay">
         <div class="login-box">
-            <h2 style="color: var(--primary); margin-bottom: 20px;">Sistema Carlinhos</h2>
-            <input type="email" id="emailLogin" placeholder="E-mail (ex: admin@carlinhos.com)">
-            <input type="password" id="senhaLogin" placeholder="Senha">
-            <button onclick="fazerLogin()" style="width: 100%; margin-top: 10px;">Entrar no Sistema</button>
-            <p id="msgErroLogin" style="color: var(--danger); margin-top: 10px; font-size: 0.9rem;"></p>
+            <h2 style="text-transform: uppercase; letter-spacing: 2px;">SISTEMA CARLINHOS</h2>
+            <input type="email" id="emailLogin" placeholder="E-MAIL (EX: admin@carlinhos.com)">
+            <input type="password" id="senhaLogin" placeholder="SENHA">
+            <button onclick="fazerLogin()" style="margin-top: 15px;">ENTRAR NO SISTEMA</button>
+            <p id="msgErroLogin" style="color: var(--danger); margin-top: 15px; font-weight: bold;"></p>
         </div>
     </div>
 
     <div id="appConteudo" style="display: none;">
 
-        <header class="main-header">
-            <div class="logo">Sistema Carlinhos <span style="font-size:0.8rem; color:var(--success);">● Online</span>
+        <header class="main-header no-print">
+            <div class="logo">SISTEMA CARLINHOS <span style="font-size:0.8rem; color:var(--success);">● Online</span>
             </div>
             <nav class="main-nav">
-                <button onclick="mostrarTela('clientes')" class="active">👥 Alunos</button>
-                <button onclick="mostrarTela('agenda')">📅 Agenda</button>
-                <button onclick="mostrarTela('financeiro')">💰 Financeiro</button>
-                <button onclick="fazerLogout()" style="border: 1px solid var(--danger); color: var(--danger);">Sair
-                    🚪</button>
+                <button onclick="mostrarTela('clientes')" class="active">👥 ALUNOS</button>
+                <button onclick="mostrarTela('agenda')">📅 AGENDA</button>
+                <button onclick="mostrarTela('financeiro')">💰 FINANCEIRO</button>
+                <button onclick="fazerLogout()"
+                    style="border: 1px solid var(--danger); color: var(--danger);">SAIR</button>
             </nav>
         </header>
 
@@ -38,45 +38,65 @@
 
             <section id="clientes" class="tela ativa">
                 <div class="header-section">
-                    <h2>Gestão de Alunos</h2>
+                    <h2>GESTÃO DE ALUNOS</h2>
+                </div>
+
+                <div class="stats-alunos">
+                    <div class="stat-card">
+                        <span class="label">TOTAL</span>
+                        <span class="value" id="statTotal">0</span>
+                    </div>
+                    <div class="stat-card pendente">
+                        <span class="label">PENDENTES</span>
+                        <span class="value" id="statPendentes">0</span>
+                    </div>
+                    <div class="stat-card recebido">
+                        <span class="label">RECEBIDO</span>
+                        <span class="value" id="statRecebido">R$ 0</span>
+                    </div>
                 </div>
 
                 <div class="form-card">
                     <div class="novo-cliente-area">
-                        <h4 id="tituloFormCliente">Cadastrar Novo Aluno:</h4>
+                        <h4 id="tituloFormCliente">CADASTRAR NOVO ALUNO:</h4>
                         <div class="input-group">
                             <input type="hidden" id="idClienteEditando">
-                            <input type="text" id="nomeCliente" placeholder="Nome completo">
-                            <input type="text" id="telefoneCliente" placeholder="Telefone">
-                            <button id="btnSalvarCliente" onclick="salvarOuAtualizarCliente()">+ Salvar Aluno</button>
+                            <input type="text" id="nomeCliente" placeholder="NOME COMPLETO">
+                            <input type="text" id="telefoneCliente" placeholder="TELEFONE">
+                            <button id="btnSalvarCliente" onclick="salvarOuAtualizarCliente()">+ ADICIONAR</button>
                             <button id="btnCancelarEdicao" onclick="cancelarEdicao()"
-                                style="display:none; background:#b45309;">Cancelar</button>
+                                style="display:none; background:#b45309;">CANCELAR</button>
                         </div>
                     </div>
-                    <hr>
+                    <hr style="border: 1px solid var(--border); margin: 20px 0;">
+
                     <div class="filtro-mes-area">
-                        <div class="filtro-box">
-                            <label>📅 Mês de Referência:</label>
-                            <input type="month" id="mesReferencia">
-                        </div>
-                        <div class="resumo-box" id="resumoMesClientes"></div>
+                        <label style="font-weight: 800; color: var(--text-secondary);">📅 MÊS DE REFERÊNCIA:</label>
+                        <input type="month" id="mesReferencia">
                     </div>
                 </div>
 
-                <div style="margin-bottom: 10px;">
-                    <input type="text" id="inputBusca" placeholder="🔍 Pesquisar aluno..."
-                        oninput="renderizarClientes()">
+                <div class="barra-filtros-alunos">
+                    <input type="text" id="inputBusca" placeholder="🔍 BUSCAR NOME..." oninput="renderizarClientes()">
+
+                    <div class="botoes-filtro">
+                        <button onclick="filtrarClientes('todos')" class="btn-filtro active"
+                            id="btnFiltroTodos">TODOS</button>
+                        <button onclick="filtrarClientes('pendente')" class="btn-filtro" id="btnFiltroPendente">⏳
+                            DEVENDO</button>
+                        <button onclick="filtrarClientes('pago')" class="btn-filtro" id="btnFiltroPago">✅ PAGOS</button>
+                    </div>
                 </div>
 
                 <div class="lista-container">
                     <table id="tabelaClientes">
                         <thead>
                             <tr>
-                                <th>Aluno</th>
-                                <th style="width: 140px;">Status</th>
-                                <th style="width: 130px;">Pagamento</th>
-                                <th style="width: 100px;">Valor</th>
-                                <th style="width: 130px;">Ações</th>
+                                <th>ALUNO</th>
+                                <th style="width: 140px;">STATUS</th>
+                                <th style="width: 130px;">FORMA</th>
+                                <th style="width: 100px;">VALOR</th>
+                                <th style="width: 130px;">AÇÕES</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -86,73 +106,117 @@
 
             <section id="agenda" class="tela">
                 <div class="header-section">
-                    <h2>Agenda Semanal</h2>
+                    <h2>AGENDA SEMANAL</h2>
                 </div>
+
+                <div class="agenda-filtros">
+                    <input type="text" id="buscaHorario" placeholder="🔍 BUSCAR HORÁRIO (EX: 15)..."
+                        oninput="renderizarAgenda()" style="flex: 2;">
+                    <select id="filtroOcupacao" onchange="renderizarAgenda()" style="flex: 1;">
+                        <option value="todos">👁️ VER TUDO</option>
+                        <option value="ocupados">✅ SÓ OCUPADOS</option>
+                        <option value="livres">🆓 SÓ LIVRES</option>
+                    </select>
+                </div>
+
                 <div class="dias-semana">
-                    <button onclick="mudarDia('segunda')" class="btn-dia active" id="btn-segunda">Seg</button>
-                    <button onclick="mudarDia('terca')" class="btn-dia" id="btn-terca">Ter</button>
-                    <button onclick="mudarDia('quarta')" class="btn-dia" id="btn-quarta">Qua</button>
-                    <button onclick="mudarDia('quinta')" class="btn-dia" id="btn-quinta">Qui</button>
-                    <button onclick="mudarDia('sexta')" class="btn-dia" id="btn-sexta">Sex</button>
+                    <button onclick="mudarDia('segunda')" class="btn-dia active" id="btn-segunda">SEG</button>
+                    <button onclick="mudarDia('terca')" class="btn-dia" id="btn-terca">TER</button>
+                    <button onclick="mudarDia('quarta')" class="btn-dia" id="btn-quarta">QUA</button>
+                    <button onclick="mudarDia('quinta')" class="btn-dia" id="btn-quinta">QUI</button>
+                    <button onclick="mudarDia('sexta')" class="btn-dia" id="btn-sexta">SEX</button>
                 </div>
+
                 <div class="agenda-container" id="containerAgenda"></div>
             </section>
 
             <section id="financeiro" class="tela">
                 <div class="header-section">
-                    <h2>Controle Financeiro</h2>
+                    <h2>RELATÓRIO FINANCEIRO</h2>
                 </div>
+
+                <div class="painel-controle-fin">
+                    <div class="input-mes-wrapper">
+                        <label>SELECIONE O PERÍODO:</label>
+                        <input type="month" id="mesFinanceiro" onchange="mudarMesRelatorio(this.value)">
+                    </div>
+                    <button onclick="window.print()" class="btn-print">🖨️ IMPRIMIR / PDF</button>
+                </div>
+
                 <div class="dashboard-financeiro">
                     <div class="card-dash entrada">
-                        <span>Receita</span>
+                        <span>RECEITA TOTAL</span>
                         <strong id="dashReceita">R$ 0,00</strong>
                     </div>
                     <div class="card-dash saida">
-                        <span>Despesas</span>
+                        <span>DESPESAS</span>
                         <strong id="dashDespesas">R$ 0,00</strong>
                     </div>
                     <div class="card-dash lucro">
-                        <span>Lucro</span>
+                        <span>LUCRO LÍQUIDO</span>
                         <strong id="dashLucro">R$ 0,00</strong>
                     </div>
                 </div>
-                <div class="form-card">
-                    <h4>Lançar Nova Despesa:</h4>
-                    <div class="input-group">
-                        <input type="text" id="descGasto" placeholder="Ex: Conta de Luz...">
-                        <input type="number" id="valorGasto" placeholder="Valor (R$)">
-                        <button onclick="adicionarGasto()" style="background-color: var(--danger);">Lançar</button>
+
+                <div class="detalhamento-caixa">
+                    <h4 style="border-bottom: 1px solid var(--border); padding-bottom: 10px;">DETALHAMENTO DE ENTRADAS
+                    </h4>
+                    <div class="grid-metodos">
+                        <div class="metodo-item">
+                            <span class="metodo-nome">💠 PIX</span>
+                            <span class="metodo-valor" id="totalPix">R$ 0,00</span>
+                        </div>
+                        <div class="metodo-item">
+                            <span class="metodo-nome">💵 DINHEIRO</span>
+                            <span class="metodo-valor" id="totalDinheiro">R$ 0,00</span>
+                        </div>
+                        <div class="metodo-item">
+                            <span class="metodo-nome">💳 CARTÃO</span>
+                            <span class="metodo-valor" id="totalCartao">R$ 0,00</span>
+                        </div>
                     </div>
                 </div>
+
+                <div class="form-card no-print">
+                    <h4>LANÇAR NOVA DESPESA:</h4>
+                    <div class="input-group">
+                        <input type="text" id="descGasto" placeholder="EX: CONTA DE LUZ...">
+                        <input type="number" id="valorGasto" placeholder="VALOR (R$)">
+                        <button onclick="adicionarGasto()" style="background-color: var(--danger);">LANÇAR
+                            DÉBITO</button>
+                    </div>
+                </div>
+
                 <div class="lista-container">
-                    <h3>Histórico de Despesas</h3>
+                    <h3>HISTÓRICO DE DESPESAS DO MÊS</h3>
                     <table id="tabelaGastos">
                         <thead>
                             <tr>
-                                <th>Descrição</th>
-                                <th>Valor</th>
-                                <th>Excluir</th>
+                                <th>DESCRIÇÃO</th>
+                                <th>VALOR</th>
+                                <th class="no-print">AÇÃO</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
                 </div>
             </section>
+
         </main>
     </div>
 
     <div id="modalProntuario" class="modal-overlay">
         <div class="modal-box">
             <div class="modal-header">
-                <h3 id="tituloProntuario">Ficha de Evolução</h3>
+                <h3 id="tituloProntuario" style="text-transform: uppercase;">FICHA DE EVOLUÇÃO</h3>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="idAlunoProntuario">
-                <textarea id="textoProntuario" placeholder="Histórico..." rows="10"></textarea>
+                <textarea id="textoProntuario" placeholder="Escreva o histórico clínico aqui..." rows="10"></textarea>
             </div>
             <div class="modal-footer">
-                <button onclick="salvarProntuario()">💾 Salvar</button>
-                <button onclick="fecharProntuario()" class="btn-fechar" style="margin-left:10px;">X</button>
+                <button onclick="salvarProntuario()">💾 SALVAR FICHA</button>
+                <button onclick="fecharProntuario()" class="btn-fechar" style="margin-left:10px;">FECHAR</button>
             </div>
         </div>
     </div>
